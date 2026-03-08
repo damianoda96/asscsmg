@@ -534,6 +534,213 @@
       .sidebar-stuff { grid-template-columns: 1fr; }
       nav a { font-size: 0.45rem; }
     }
+
+    /* ===== FORUM STYLES ===== */
+    .forum-win .win-body { background: #0a0a1a; color: var(--lime); }
+
+    .forum-locked {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--silver);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .forum-locked .lock-icon { font-size: 3rem; display: block; margin-bottom: 1rem; animation: bounce 1s ease-in-out infinite alternate; }
+
+    .forum-locked .lock-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .forum-panel { display: none; }
+    .forum-panel.unlocked { display: block; }
+
+    .forum-compose {
+      background: #111133;
+      border: 2px inset var(--silver);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .forum-compose-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      color: var(--yellow);
+      margin-bottom: 0.75rem;
+    }
+
+    .forum-input {
+      background: var(--black);
+      border: 2px inset var(--silver);
+      color: var(--lime);
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      padding: 6px 8px;
+      width: 100%;
+      outline: none;
+      margin-bottom: 6px;
+    }
+
+    .forum-textarea {
+      background: var(--black);
+      border: 2px inset var(--silver);
+      color: var(--lime);
+      font-family: 'VT323', monospace;
+      font-size: 1.1rem;
+      padding: 6px 8px;
+      width: 100%;
+      outline: none;
+      resize: vertical;
+      min-height: 80px;
+      margin-bottom: 6px;
+    }
+
+    .forum-tag-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .forum-tag-btn {
+      background: var(--navy);
+      border: 2px outset var(--silver);
+      color: var(--silver);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      padding: 5px 8px;
+      cursor: pointer;
+    }
+
+    .forum-tag-btn.selected { background: var(--teal); color: var(--yellow); border-style: inset; }
+    .forum-tag-btn:hover { background: var(--maroon); color: var(--yellow); }
+
+    .forum-submit-row { display: flex; justify-content: space-between; align-items: center; }
+    .forum-submit-msg { font-size: 1rem; color: var(--aqua); }
+
+    .forum-posts { margin-top: 0.5rem; }
+
+    .forum-post {
+      border: 2px inset var(--silver);
+      background: #0d0d2a;
+      margin-bottom: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .forum-post-header {
+      background: linear-gradient(to right, #1a1a4a, #002255);
+      padding: 5px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .forum-post-meta {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      color: var(--aqua);
+    }
+
+    .forum-post-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.38rem;
+      padding: 2px 6px;
+      border: 1px solid;
+    }
+
+    .forum-post-tag.bug     { color: var(--red);    border-color: var(--red);    background: #1a0000; }
+    .forum-post-tag.feedback { color: var(--lime);   border-color: var(--lime);   background: #001a00; }
+    .forum-post-tag.idea    { color: var(--yellow);  border-color: var(--yellow); background: #1a1a00; }
+    .forum-post-tag.other   { color: var(--silver);  border-color: var(--silver); background: #111; }
+
+    .forum-post-subject {
+      color: var(--yellow);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 6px 8px 2px;
+    }
+
+    .forum-post-body {
+      padding: 4px 8px 8px;
+      font-size: 1.1rem;
+      color: var(--lime);
+      line-height: 1.6;
+    }
+
+    .forum-post-footer {
+      padding: 4px 8px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border-top: 1px solid #1a1a3a;
+    }
+
+    .forum-upvote {
+      background: none;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: 'VT323', monospace;
+      font-size: 1rem;
+      padding: 2px 8px;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .forum-upvote:hover { background: var(--navy); color: var(--yellow); border-color: var(--yellow); }
+    .forum-upvote.voted { background: var(--navy); color: var(--yellow); border-color: var(--yellow); }
+
+    .forum-empty {
+      text-align: center;
+      color: #334;
+      font-size: 1.1rem;
+      padding: 2rem;
+    }
+
+    .forum-sort-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .forum-sort-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      color: var(--silver);
+    }
+
+    .forum-sort-btn {
+      background: var(--navy);
+      border: 2px outset var(--silver);
+      color: var(--silver);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.38rem;
+      padding: 4px 7px;
+      cursor: pointer;
+    }
+
+    .forum-sort-btn.active { background: var(--teal); color: var(--yellow); border-style: inset; }
+
+    .forum-loading {
+      text-align: center;
+      color: var(--aqua);
+      font-size: 1.1rem;
+      padding: 1rem;
+      animation: blink 1s step-end infinite;
+    }
+
+    .forum-key-hint {
+      font-size: 0.9rem;
+      color: #446644;
+      margin-top: 0.75rem;
+    }
   </style>
 </head>
 <body>
@@ -569,6 +776,7 @@
     <a href="#demo">[ GET DEMO ]</a>
     <a href="#blog">[ DEV BLOG ]</a>
     <a href="#guestbook">[ MAILING LIST ]</a>
+    <a href="#forum">[ PLAYTESTER FORUM ]</a>
     <a href="#links">[ COOL LINKS ]</a>
   </nav>
 
@@ -799,6 +1007,67 @@
       </div>
     </div>
 
+    <!-- PLAYTESTER FORUM -->
+    <div class="win forum-win" id="forum">
+      <div class="win-titlebar">
+        <span>💬 playtester_forum.exe — AUTHORIZED PERSONNEL ONLY</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+
+        <!-- LOCKED STATE -->
+        <div class="forum-locked" id="forumLocked">
+          <span class="lock-icon">🔒</span>
+          <div class="lock-title">ACCESS RESTRICTED</div>
+          <div style="color:var(--silver);">
+            &gt; This forum is for playtesters only.<br/>
+            &gt; Enter your demo key above to unlock it.<br/>
+            &gt; Don't have a key? Join the mailing list and beg.
+          </div>
+          <div class="forum-key-hint">[ scroll up to the demo key section and enter your key first ]</div>
+        </div>
+
+        <!-- UNLOCKED FORUM PANEL -->
+        <div class="forum-panel" id="forumPanel">
+          <div class="retro-h2">PLAYTESTER FEEDBACK BOARD</div>
+
+          <!-- COMPOSE -->
+          <div class="forum-compose">
+            <div class="forum-compose-title">📝 POST NEW FEEDBACK</div>
+            <input class="forum-input" id="forumName" type="text" placeholder="Your name / handle" maxlength="30"/>
+            <input class="forum-input" id="forumSubject" type="text" placeholder="Subject line (keep it short)" maxlength="80"/>
+            <textarea class="forum-textarea" id="forumBody" placeholder="Describe the bug, feedback or idea in detail...&#10;&#10;Be specific! Screenshots help if you can describe what you saw." maxlength="1000"></textarea>
+            <div class="forum-tag-row">
+              <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--silver);align-self:center;">TAG:</div>
+              <button class="forum-tag-btn selected" data-tag="feedback" onclick="selectTag(this)">💬 FEEDBACK</button>
+              <button class="forum-tag-btn" data-tag="bug" onclick="selectTag(this)">🐛 BUG REPORT</button>
+              <button class="forum-tag-btn" data-tag="idea" onclick="selectTag(this)">💡 IDEA</button>
+              <button class="forum-tag-btn" data-tag="other" onclick="selectTag(this)">📌 OTHER</button>
+            </div>
+            <div class="forum-submit-row">
+              <button class="retro-btn primary" onclick="submitPost()">POST IT &gt;&gt;</button>
+              <span class="forum-submit-msg" id="forumSubmitMsg"></span>
+            </div>
+          </div>
+
+          <!-- SORT -->
+          <div class="forum-sort-row">
+            <span class="forum-sort-label">SORT:</span>
+            <button class="forum-sort-btn active" id="sortNew" onclick="setSort('new')">🕐 NEWEST</button>
+            <button class="forum-sort-btn" id="sortTop" onclick="setSort('top')">🔥 TOP RATED</button>
+          </div>
+
+          <!-- POSTS LIST -->
+          <div class="forum-posts" id="forumPosts">
+            <div class="forum-loading">&gt; Loading posts...</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
   </main>
 
   <footer>
@@ -843,7 +1112,6 @@
   // 🔑 KEY SYSTEM CONFIG — EDIT THESE VALUES
   // ═══════════════════════════════════════════════
 
-  // Add your plaintext keys here. Playtesters get one key each.
   const VALID_KEYS = [
     'BREW-DEMO-0001',
     'BREW-DEMO-0002',
@@ -854,23 +1122,31 @@
     'TEST-CAFE-1234',
   ];
 
-  // GitHub Releases download URLs — update these when you publish a release
-  // Example: https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v0.1.0/BrewMaster-windows.zip
   const DOWNLOAD_URLS = {
-    windows: '#',  // Replace with your GitHub Release asset URL
-    mac: '#',      // Replace with your GitHub Release asset URL
-    linux: '#',    // Replace with your GitHub Release asset URL
+    windows: '#',
+    mac: '#',
+    linux: '#',
   };
 
   // ═══════════════════════════════════════════════
 
-  // Track used keys in localStorage to prevent sharing
+  let currentUserKey = null;
+  let forumSortMode = 'new';
+  let selectedTag = 'feedback';
+  let votedPosts = {};
+
   function getUsedKeys() {
     try { return JSON.parse(localStorage.getItem('usedDemoKeys') || '[]'); } catch { return []; }
   }
   function markKeyUsed(key) {
     const used = getUsedKeys();
     if (!used.includes(key)) { used.push(key); localStorage.setItem('usedDemoKeys', JSON.stringify(used)); }
+  }
+  function getVotedPosts() {
+    try { return JSON.parse(localStorage.getItem('votedPosts') || '{}'); } catch { return {}; }
+  }
+  function saveVotedPosts(v) {
+    try { localStorage.setItem('votedPosts', JSON.stringify(v)); } catch {}
   }
 
   function checkKey() {
@@ -888,18 +1164,25 @@
       msg.textContent = '> ACCESS GRANTED. Welcome to the chaos.';
       msg.className = 'key-msg ok';
       markKeyUsed(key);
+      currentUserKey = key;
 
-      // Show download panel
       panel.classList.add('visible');
-
-      // Set download links
       document.getElementById('dlWindows').href = DOWNLOAD_URLS.windows;
       document.getElementById('dlMac').href = DOWNLOAD_URLS.mac;
       document.getElementById('dlLinux').href = DOWNLOAD_URLS.linux;
+
+      // Unlock forum
+      document.getElementById('forumLocked').style.display = 'none';
+      document.getElementById('forumPanel').classList.add('unlocked');
+      votedPosts = getVotedPosts();
+      loadForumPosts();
     } else {
       msg.textContent = '> ACCESS DENIED. That key is about as valid as your excuses.';
       msg.className = 'key-msg bad';
       panel.classList.remove('visible');
+      currentUserKey = null;
+      document.getElementById('forumLocked').style.display = '';
+      document.getElementById('forumPanel').classList.remove('unlocked');
     }
   }
 
@@ -911,17 +1194,164 @@
       msg.style.color = 'var(--maroon)';
       return;
     }
-    // 🔗 Hook up to Mailchimp / ConvertKit / your backend here
     msg.textContent = "✓ You're on the list. We'll be in touch. Don't hold your breath though.";
     msg.style.color = 'green';
     document.getElementById('emailInput').value = '';
+  }
+
+  // ═══════════════════════════════════════════════
+  // 💬 FORUM LOGIC
+  // ═══════════════════════════════════════════════
+
+  function selectTag(btn) {
+    document.querySelectorAll('.forum-tag-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedTag = btn.dataset.tag;
+  }
+
+  function setSort(mode) {
+    forumSortMode = mode;
+    document.getElementById('sortNew').classList.toggle('active', mode === 'new');
+    document.getElementById('sortTop').classList.toggle('active', mode === 'top');
+    loadForumPosts();
+  }
+
+  async function loadForumPosts() {
+    const container = document.getElementById('forumPosts');
+    container.innerHTML = '<div class="forum-loading">> Loading posts from the server...</div>';
+
+    try {
+      const result = await window.storage.list('forum-post-', true);
+      const keys = result?.keys || [];
+
+      if (keys.length === 0) {
+        container.innerHTML = '<div class="forum-empty">> No posts yet. Be the first to post some feedback!<br/>> Don\'t be shy — the rats are watching.</div>';
+        return;
+      }
+
+      const posts = [];
+      for (const key of keys) {
+        try {
+          const r = await window.storage.get(key, true);
+          if (r?.value) posts.push(JSON.parse(r.value));
+        } catch {}
+      }
+
+      if (forumSortMode === 'new') {
+        posts.sort((a, b) => b.ts - a.ts);
+      } else {
+        posts.sort((a, b) => (b.votes || 0) - (a.votes || 0));
+      }
+
+      container.innerHTML = '';
+      for (const post of posts) {
+        container.appendChild(buildPostEl(post));
+      }
+    } catch (err) {
+      container.innerHTML = '<div class="forum-loading">> Error loading posts. Try refreshing.</div>';
+    }
+  }
+
+  function buildPostEl(post) {
+    const div = document.createElement('div');
+    div.className = 'forum-post';
+    div.id = 'post-' + post.id;
+
+    const tagLabels = { bug: '🐛 BUG', feedback: '💬 FEEDBACK', idea: '💡 IDEA', other: '📌 OTHER' };
+    const tag = post.tag || 'other';
+    const hasVoted = votedPosts[post.id];
+    const ts = new Date(post.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    div.innerHTML = `
+      <div class="forum-post-header">
+        <span class="forum-post-meta">👤 ${escHtml(post.name)} &nbsp;|&nbsp; 🕐 ${ts}</span>
+        <span class="forum-post-tag ${tag}">${tagLabels[tag] || '📌 OTHER'}</span>
+      </div>
+      <div class="forum-post-subject">${escHtml(post.subject)}</div>
+      <div class="forum-post-body">${escHtml(post.body)}</div>
+      <div class="forum-post-footer">
+        <button class="forum-upvote ${hasVoted ? 'voted' : ''}" onclick="upvotePost('${post.id}', this)">
+          ▲ ${post.votes || 0} ${hasVoted ? 'VOTED' : 'UPVOTE'}
+        </button>
+        <span style="color:#334;font-size:0.85rem;">key: ${post.keyHint}</span>
+      </div>
+    `;
+    return div;
+  }
+
+  function escHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/\n/g, '<br/>');
+  }
+
+  async function submitPost() {
+    if (!currentUserKey) return;
+
+    const name    = document.getElementById('forumName').value.trim();
+    const subject = document.getElementById('forumSubject').value.trim();
+    const body    = document.getElementById('forumBody').value.trim();
+    const msg     = document.getElementById('forumSubmitMsg');
+
+    if (!name)    { msg.style.color = 'var(--red)'; msg.textContent = '> Enter your name first!'; return; }
+    if (!subject) { msg.style.color = 'var(--red)'; msg.textContent = '> Give this post a subject!'; return; }
+    if (!body)    { msg.style.color = 'var(--red)'; msg.textContent = '> Write something first!'; return; }
+
+    msg.style.color = 'var(--aqua)';
+    msg.textContent = '> Posting...';
+
+    const id = 'p' + Date.now() + Math.random().toString(36).slice(2, 6);
+    const post = {
+      id,
+      name,
+      subject,
+      body,
+      tag: selectedTag,
+      votes: 0,
+      ts: Date.now(),
+      keyHint: currentUserKey.slice(0, 4) + '-****-****',
+    };
+
+    try {
+      await window.storage.set('forum-post-' + id, JSON.stringify(post), true);
+      msg.style.color = 'var(--lime)';
+      msg.textContent = '> Posted!! Thanks for the feedback.';
+      document.getElementById('forumName').value = '';
+      document.getElementById('forumSubject').value = '';
+      document.getElementById('forumBody').value = '';
+      setTimeout(() => { msg.textContent = ''; }, 3000);
+      loadForumPosts();
+    } catch (err) {
+      msg.style.color = 'var(--red)';
+      msg.textContent = '> Failed to post. Try again.';
+    }
+  }
+
+  async function upvotePost(id, btn) {
+    if (votedPosts[id]) return;
+
+    votedPosts[id] = true;
+    saveVotedPosts(votedPosts);
+
+    try {
+      const r = await window.storage.get('forum-post-' + id, true);
+      if (!r?.value) return;
+      const post = JSON.parse(r.value);
+      post.votes = (post.votes || 0) + 1;
+      await window.storage.set('forum-post-' + id, JSON.stringify(post), true);
+      btn.textContent = '▲ ' + post.votes + ' VOTED';
+      btn.classList.add('voted');
+    } catch {}
   }
 
   // Enter key handlers
   document.getElementById('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkKey(); });
   document.getElementById('emailInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitEmail(); });
 
-  // Check if user already has a valid key stored
+  // Auto-restore key from localStorage
   (function() {
     const used = getUsedKeys();
     for (const key of used) {

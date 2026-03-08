@@ -1,2 +1,2 @@
 # ASSCSMG
-super secret coffee shop management game
+a super secret coffee shop management game

@@ -337,6 +337,45 @@
     .key-msg.ok { color: var(--lime); }
     .key-msg.bad { color: var(--red); }
 
+    .download-panel {
+      display: none;
+      margin-top: 1rem;
+      border: 2px solid var(--lime);
+      background: #001a00;
+      padding: 1rem;
+    }
+
+    .download-panel.visible { display: block; }
+
+    .download-panel .dl-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+
+    .dl-links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .dl-btn {
+      background: var(--navy);
+      border: 2px outset var(--silver);
+      color: var(--lime);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 10px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .dl-btn:hover { background: var(--teal); color: var(--yellow); }
+
+    .dl-note {
+      color: #448844;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+    }
+
     .blog-post {
       border: 2px inset var(--silver);
       background: var(--white);
@@ -508,7 +547,7 @@
 
 <div class="top-bar">
   <marquee behavior="scroll" scrollamount="4">
-    ☕ WELCOME TO THE SUPER SECRET COFFEE SHOP GAME OFFICIAL HOMEPAGE ☕ &nbsp;&nbsp;&nbsp; 🌟 DEMO COMING SOON!! 🌟 &nbsp;&nbsp;&nbsp; ✨ SIGN OUR GUESTBOOK ✨ &nbsp;&nbsp;&nbsp; ☕ BEST VIEWED IN 800x600 ☕ &nbsp;&nbsp;&nbsp; 🎮 MADE WITH GODOT 4 🎮 &nbsp;&nbsp;&nbsp;
+    ☕ WELCOME TO THE ONLY COFFEE SHOP GAME WITH A RAT-INFESTED BASEMENT ☕ &nbsp;&nbsp;&nbsp; 🔑 DEMO KEYS NOW AVAILABLE FOR PLAYTESTERS 🔑 &nbsp;&nbsp;&nbsp; 🐀 YES THE RATS ARE A FEATURE NOT A BUG &nbsp;&nbsp;&nbsp; ☕ BEST VIEWED WHILE OVERCAFFEINATED ☕ &nbsp;&nbsp;&nbsp; 🎮 MADE WITH GODOT 4 + REGRET 🎮 &nbsp;&nbsp;&nbsp;
   </marquee>
 </div>
 
@@ -518,10 +557,10 @@
     <div class="header-rainbow"></div>
     <div class="header-inner">
       <span class="header-cup">☕</span>
-      <div class="site-title">~~*~~ SUPER SECRET<br/>COFFEE SHOP GAME ~~*~~</div>
+      <div class="site-title">~~*~~ A SUPER SECRET<br/>COFFEE SHOP MANAGEMENT GAME ~~*~~</div>
       <div class="site-subtitle">[ OFFICIAL HOMEPAGE ]</div>
     </div>
-    <div class="under-construction">🚧 &nbsp; SITE UNDER CONSTRUCTION - CHECK BACK DAILY FOR UPDATES!! &nbsp; 🚧</div>
+    <div class="under-construction">🚧 &nbsp; WE PROMISE THIS SITE LOOKS BAD ON PURPOSE &nbsp; 🚧</div>
   </header>
 
   <nav>
@@ -529,7 +568,7 @@
     <a href="#screenshots">[ SCREENSHOTS ]</a>
     <a href="#demo">[ GET DEMO ]</a>
     <a href="#blog">[ DEV BLOG ]</a>
-    <a href="#guestbook">[ GUESTBOOK ]</a>
+    <a href="#guestbook">[ MAILING LIST ]</a>
     <a href="#links">[ COOL LINKS ]</a>
   </nav>
 
@@ -546,16 +585,16 @@
       <div class="win-body">
         <div class="retro-h2">WHAT IS THIS GAME???</div>
         <p>
-          &gt; Welcome to the most COZY coffee shop sim on the internet!!<br/>
-          &gt; Brew drinks. Serve customers. Decorate your cafe.<br/>
-          &gt; Grow your business from a tiny cart to a MEGA CAFE!!<br/>
-          &gt; Meet regulars. Hire staff. Unlock secret recipes!! 🤫
+          &gt; You wanted a cozy coffee shop sim? Cool, we made one.<br/>
+          &gt; Brew espressos. Steam milk. Serve ungrateful pixel people.<br/>
+          &gt; Get evicted when you can't make rent. Work at a Dumb Starbucks to recover.<br/>
+          &gt; Oh, and there's a rat-infested dungeon under your shop. You're welcome.
         </p>
-        <p class="hero-desc">"A relaxing, wholesome game about building your dream coffee shop — one cup at a time."</p>
+        <p class="hero-desc">"A top-down coffee shop management game where everything that can go wrong will go wrong — and you'll still come back for one more day."</p>
         <div class="retro-hr"></div>
         <div class="hero-btns">
           <a href="#demo" class="retro-btn primary">▶ TRY THE DEMO</a>
-          <a href="#guestbook" class="retro-btn">✉ JOIN WISHLIST</a>
+          <a href="#guestbook" class="retro-btn">✉ MAILING LIST</a>
           <a href="#screenshots" class="retro-btn">📷 SCREENSHOTS</a>
         </div>
       </div>
@@ -564,29 +603,45 @@
     <!-- FEATURES -->
     <div class="win">
       <div class="win-titlebar">
-        <span>⭐ game_features.txt</span>
+        <span>⭐ things_we_actually_built.txt</span>
         <div class="win-buttons">
           <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
         </div>
       </div>
       <div class="win-body" style="background:var(--navy);">
-        <div class="retro-h2">COOL FEATURES!!</div>
+        <div class="retro-h2">FEATURES (REAL ONES)</div>
         <div class="features-grid">
           <div class="feature-box">
-            <span class="feat-title">☕ BREW &amp; CRAFT</span>
-            Mix dozens of drinks and discover secret recipes hidden in the game!!
+            <span class="feat-title">☕ BREW DRINKS</span>
+            Espressos, lattes, cappuccinos — pulled through lovingly janky minigames. Mess up the order and watch your reputation tank in real time.
           </div>
           <div class="feature-box">
-            <span class="feat-title">🎨 DECORATE</span>
-            100s of items to make your café look totally awesome. No max quantity on tiles!!
+            <span class="feat-title">🏪 RUN YOUR SHOP</span>
+            Full day cycle: PREP, SERVICE, CLOSING, RESULTS. Clean messes, fix broken tables, repair busted windows. Glamorous, right?
           </div>
           <div class="feature-box">
-            <span class="feat-title">👥 MEET REGULARS</span>
-            Unique characters with their own stories, moods &amp; fave drinks!!
+            <span class="feat-title">🎨 DECORATE EVERYTHING</span>
+            Plants, lights, rugs, arcade cabinets — place them wherever you want. Buy unlimited flooring tiles because we're not monsters.
           </div>
           <div class="feature-box">
-            <span class="feat-title">📈 GROW BIG</span>
-            Hire staff, expand your shop, unlock NEW neighbourhoods!!
+            <span class="feat-title">📈 EXPAND OR DIE</span>
+            Upgrade your lease to get a bigger shop. Miss rent and get evicted. Work recovery shifts at Dumb Starbucks until you can reopen. The American Dream.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🐀 BASEMENT DUNGEON</span>
+            Your shop has a basement. It's full of rats and bugs. Grab a broom and clear it floor by floor. Find golden mugs and ancient coffee grinders as loot. Normal coffee shop stuff.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🌆 EXPLORE THE STREET</span>
+            Step outside during prep to visit the plant shop, thrift store, and that one competitor that's definitely not a Starbucks. Name your shop whatever you want — nobody can stop you.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">👤 CHARACTER CREATION</span>
+            Pick your hair, skin, eyes, beard, outfit. Choose from 8 hairstyles including mohawk and bald. Name yourself. Name your shop. Live your truth.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🎲 RANDOM EVENTS</span>
+            Health inspectors. Celebrity customers who tip huge. Equipment breakdowns mid-rush. Weather that affects how many people show up. Fun.
           </div>
         </div>
       </div>
@@ -603,15 +658,15 @@
       <div class="win-body" style="background:#111;">
         <div class="retro-h2">SCREENSHOTS!!</div>
         <marquee behavior="alternate" scrollamount="2" style="color:var(--yellow);font-size:0.85rem;margin-bottom:8px;">
-          ★ Replace placeholders with real screenshots when ready! ★
+          ★ Real screenshots coming when the dev stops adding features for 5 minutes ★
         </marquee>
         <div class="screenshot-grid">
-          <div class="screenshot-box"><span class="ss-icon">☕</span>Main Shop View</div>
-          <div class="screenshot-box"><span class="ss-icon">🛒</span>The Shop</div>
-          <div class="screenshot-box"><span class="ss-icon">👤</span>Customers</div>
-          <div class="screenshot-box"><span class="ss-icon">🍰</span>Menu Builder</div>
-          <div class="screenshot-box"><span class="ss-icon">🌿</span>Outdoor Area</div>
-          <div class="screenshot-box"><span class="ss-icon">📊</span>Dashboard</div>
+          <div class="screenshot-box"><span class="ss-icon">☕</span>Your Sad Little Shop</div>
+          <div class="screenshot-box"><span class="ss-icon">🐀</span>The Rat Basement</div>
+          <div class="screenshot-box"><span class="ss-icon">🌆</span>Street Exploration</div>
+          <div class="screenshot-box"><span class="ss-icon">🛒</span>Shop Catalog</div>
+          <div class="screenshot-box"><span class="ss-icon">👤</span>Character Creator</div>
+          <div class="screenshot-box"><span class="ss-icon">📊</span>End of Day Results</div>
         </div>
       </div>
     </div>
@@ -619,7 +674,7 @@
     <!-- DEMO KEY -->
     <div class="win demo-win" id="demo">
       <div class="win-titlebar">
-        <span>🔑 demo_access.exe — ENTER KEY TO UNLOCK</span>
+        <span>🔑 demo_access.exe — PROVE YOU'RE WORTHY</span>
         <div class="win-buttons">
           <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
         </div>
@@ -627,16 +682,29 @@
       <div class="win-body">
         <div class="retro-h2">GOT A KEY? ENTER IT!!</div>
         <p style="color:var(--silver);font-size:1.1rem;margin-bottom:0.5rem;">
-          &gt; Keys are given to playtesters only.<br/>
-          &gt; Join the wishlist below to request one!!<br/>
+          &gt; Demo keys are handed out to playtesters like scarce rations.<br/>
+          &gt; If you don't have one, join the mailing list below and beg politely.<br/>
           &gt; Format: XXXX-XXXX-XXXX
         </p>
         <div class="key-row">
           <input class="key-field" id="keyInput" type="text" placeholder="XXXX-XXXX-XXXX" maxlength="19" autocomplete="off"/>
           <button class="key-go" onclick="checkKey()">UNLOCK &gt;&gt;</button>
         </div>
-        <div class="key-msg" id="keyMsg">&gt; Awaiting input...</div>
-        <div style="color:#444;font-size:0.85rem;margin-top:0.5rem;">[ download link appears here on valid key ]</div>
+        <div class="key-msg" id="keyMsg">&gt; Awaiting input... (no pressure)</div>
+
+        <!-- Download panel (hidden until valid key) -->
+        <div class="download-panel" id="downloadPanel">
+          <div class="dl-title">ACCESS GRANTED — CHOOSE YOUR POISON:</div>
+          <div class="dl-links">
+            <a class="dl-btn" id="dlWindows" href="#" target="_blank">💾 WINDOWS (.zip)</a>
+            <a class="dl-btn" id="dlMac" href="#" target="_blank">🍎 macOS (.zip)</a>
+            <a class="dl-btn" id="dlLinux" href="#" target="_blank">🐧 LINUX (.zip)</a>
+          </div>
+          <div class="dl-note">
+            &gt; Unzip it. Run the executable. Don't ask why there's a basement.<br/>
+            &gt; Report bugs to the mailing list. Or don't. We'll find them eventually.
+          </div>
+        </div>
       </div>
     </div>
 
@@ -649,50 +717,62 @@
       </div>
       <div class="badges-box">
         <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--yellow);width:100%;margin-bottom:4px;">★ WEB BADGES ★</div>
-        <div class="badge hot">🔥 HOT GAME</div>
+        <div class="badge hot">🔥 RENT IS DUE</div>
         <div class="badge new-badge">🆕 INDIE DEV</div>
         <div class="badge cool">🎮 GODOT 4</div>
         <div class="badge">💾 SAVE OFTEN</div>
-        <div class="badge hot">☕ COFFEE FAN</div>
+        <div class="badge hot">🐀 RAT SLAYER</div>
         <div class="badge cool">🌐 Y2K STYLE</div>
-        <div class="badge">✨ COZY GAME</div>
-        <div class="badge new-badge">🚧 WIP</div>
+        <div class="badge">☕ SEND COFFEE</div>
+        <div class="badge new-badge">🚧 ALPHA BUILD</div>
       </div>
     </div>
 
     <!-- DEV BLOG -->
     <div class="win" id="blog">
       <div class="win-titlebar">
-        <span>📝 devlog.html — DEV BLOG</span>
+        <span>📝 devlog.html — DISPATCHES FROM THE TRENCHES</span>
         <div class="win-buttons">
           <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
         </div>
       </div>
       <div class="win-body">
-        <div class="retro-h2">FROM THE KITCHEN !!</div>
+        <div class="retro-h2">DEV BLOG !!</div>
+
         <div class="blog-post">
-          <div class="blog-post-title">📅 MARCH 5, 2026 — SHOP SYSTEM IS LIVE!!</div>
+          <div class="blog-post-title">📅 MARCH 8, 2026 — WE ADDED A DUNGEON UNDER THE COFFEE SHOP</div>
           <div class="blog-post-body">
-            <span class="blog-date">Posted by: DevTeam</span>
-            HUGE UPDATE!! The in-game shop is finally working in our internal builds!! Decorations, furniture, flooring tiles — and yeah, you can now buy AS MANY flooring tiles as you want. No more max quantity!! Fixed a bunch of bugs from playtesting too. Thanks everyone for the feedback!! 🙏
+            <span class="blog-date">Posted by: DevTeam (questionable decisions dept.)</span>
+            So we were building a nice, wholesome coffee shop sim and someone said "what if there was a basement full of rats." Long story short, there's now a full roguelike dungeon under your cafe. Procedurally generated rooms, broom-based combat, loot chests, and floor progression gated by your lease tier. You can find golden mugs and ancient coffee grinders down there. We don't know what we are anymore but we're committed.
           </div>
         </div>
+
         <div class="blog-post">
-          <div class="blog-post-title">📅 FEB 18, 2026 — CUSTOMER PERSONALITY SYSTEM</div>
+          <div class="blog-post-title">📅 MARCH 5, 2026 — SHOP NAMING + CHARACTER CREATION</div>
           <div class="blog-post-body">
             <span class="blog-date">Posted by: DevTeam</span>
-            Building a system where every regular has their OWN drink preferences, backstory and mood!! So like, one customer might always order an oat latte and be grumpy on Mondays. Super excited about how this is turning out!!
+            You can now name yourself and your shop during character creation. Also added the ability to rename your shop later for $100, because apparently capitalism applies to signage too. Fixed the cement floor situation — grey and clean now instead of that busy brown tile nightmare. Also removed quantity limits on flooring because restricting floor tiles is a crime against interior design.
           </div>
         </div>
+
+        <div class="blog-post">
+          <div class="blog-post-title">📅 FEB 18, 2026 — CUSTOMER AI THAT ACTUALLY WORKS (MOSTLY)</div>
+          <div class="blog-post-body">
+            <span class="blog-date">Posted by: DevTeam</span>
+            Customers now walk in through the door, navigate to seats, order drinks, get impatient if you take too long, and leave messes on tables for you to clean up. Just like real life. They also have speech bubbles and will visibly judge you. The satisfaction system tracks order quality, wait time, and whether you even remembered to steam the milk.
+          </div>
+        </div>
+
         <div class="blog-post">
           <div class="blog-post-title">📅 FEB 1, 2026 — WHY WE PICKED GODOT 4</div>
           <div class="blog-post-body">
             <span class="blog-date">Posted by: DevTeam</span>
-            Tried Unity. Tried GameMaker. Landed on Godot 4 and never looking back. Free, open source, and perfect for a cozy sim like this. Full breakdown coming soon!!
+            Tried Unity (licensing drama). Tried GameMaker (not enough pain). Landed on Godot 4 — free, open source, and the GDScript syntax hits that sweet spot between "readable" and "what do you mean there's no semicolons." Using GL Compatibility renderer because we're targeting potato hardware. All sprites are generated via Python/Pillow scripts because hand-drawing pixel art is for people with talent.
           </div>
         </div>
+
         <div style="text-align:center;margin-top:0.75rem;">
-          <button class="retro-btn">📜 VIEW ALL POSTS &gt;&gt;</button>
+          <button class="retro-btn">📜 THAT'S ALL THE POSTS, STOP SCROLLING</button>
         </div>
       </div>
     </div>
@@ -700,22 +780,22 @@
     <!-- EMAIL SIGNUP -->
     <div class="win email-win" id="guestbook">
       <div class="win-titlebar">
-        <span>✉ wishlist_signup.htm — JOIN THE LIST!!</span>
+        <span>✉ mailing_list.htm — WE WON'T SPAM YOU (PROBABLY)</span>
         <div class="win-buttons">
           <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
         </div>
       </div>
       <div class="win-body">
-        <div class="retro-h2">JOIN THE WISHLIST !!</div>
+        <div class="retro-h2">JOIN THE MAILING LIST !!</div>
         <p style="margin-bottom:1rem;font-size:1.1rem;color:var(--navy);">
-          Sign up to get notified when demo keys drop + big game updates!! No spam. Just coffee. ☕
+          Get notified when demo keys drop, major updates land, or we do something really questionable with the game design. No spam — we're too busy fixing bugs to write newsletters.
         </p>
         <label class="retro-label">YOUR EMAIL ADDRESS:</label>
         <div class="email-row">
           <input class="retro-input" id="emailInput" type="email" placeholder="yourname@email.com" style="flex:1"/>
           <button class="retro-btn primary" onclick="submitEmail()" style="white-space:nowrap;">SIGN ME UP &gt;&gt;</button>
         </div>
-        <div class="email-msg" id="emailMsg">★ We'll email you when keys are ready! ★</div>
+        <div class="email-msg" id="emailMsg">★ We'll email you when keys are ready (or when something funny happens) ★</div>
       </div>
     </div>
 
@@ -723,55 +803,103 @@
 
   <footer>
     <div class="footer-rainbow"></div>
-    <div class="footer-title">~~*~~ SUPER SECRET COFFEE SHOP GAME ~~*~~</div>
+    <div class="footer-title">~~*~~ A SUPER SECRET COFFEE SHOP MANAGEMENT GAME ~~*~~</div>
     <div class="footer-links">
       <a href="#">HOME</a>
       <a href="#">EMAIL US</a>
-      <a href="#">SITEMAP</a>
-      <a href="#">BACK TO TOP ↑</a>
+      <a href="#">SITEMAP (lol)</a>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">BACK TO TOP ↑</a>
     </div>
     <div style="color:var(--silver);font-size:0.9rem;margin-top:0.5rem;">
-      Made with ☕ + 💾 + way too many late nights<br/>
-      © 2026 — All Rights Reserved
+      Made with ☕ + 💾 + an AI that keeps suggesting we add more features<br/>
+      © 2026 — All Rights Reserved (especially the rats)
     </div>
-    <div class="best-viewed">★ BEST VIEWED IN NETSCAPE NAVIGATOR 4.0 AT 800x600 ★</div>
+    <div class="best-viewed">★ BEST VIEWED IN NETSCAPE NAVIGATOR 4.0 AT 800x600 WITH LOW EXPECTATIONS ★</div>
   </footer>
 
 </div>
 
 <div class="top-bar" style="border-top:3px solid var(--yellow);border-bottom:none;">
   <marquee behavior="scroll" direction="right" scrollamount="3">
-    ✦ THANKS FOR VISITING!! ✦ &nbsp;&nbsp; BOOKMARK THIS PAGE &nbsp;&nbsp; ✦ TELL YOUR FRIENDS!! ✦ &nbsp;&nbsp; CHECK BACK FOR UPDATES &nbsp;&nbsp; ✦ COFFEE IS LIFE ✦
+    ✦ THANKS FOR VISITING!! ✦ &nbsp;&nbsp; BOOKMARK THIS PAGE &nbsp;&nbsp; ✦ TELL EXACTLY ONE FRIEND!! ✦ &nbsp;&nbsp; DO NOT FEED THE BASEMENT RATS &nbsp;&nbsp; ✦ COFFEE IS A PERSONALITY TRAIT ✦
   </marquee>
 </div>
 
 <script>
+  // === Visitor Counter (cosmetic) ===
   const base = 419823;
   const myVisit = Math.floor(Math.random() * 300) + base;
   document.getElementById('visitorCount').textContent = String(myVisit + 47).padStart(6, '0');
   document.getElementById('myNum').textContent = String(myVisit).padStart(6, '0');
 
+  // === Key Input Auto-formatting ===
   document.getElementById('keyInput').addEventListener('input', function() {
     let val = this.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
     let fmt = val.match(/.{1,4}/g)?.join('-') || val;
     this.value = fmt.slice(0, 19);
   });
 
-  // 🔑 ADD YOUR REAL KEYS HERE:
-  const VALID_KEYS = ['DEMO-1234-CAFE', 'TEST-ABCD-0001', 'BREW-BETA-2026'];
-  const DOWNLOAD_URL = '#'; // 🔗 Replace with your actual download link
+  // ═══════════════════════════════════════════════
+  // 🔑 KEY SYSTEM CONFIG — EDIT THESE VALUES
+  // ═══════════════════════════════════════════════
+
+  // Add your plaintext keys here. Playtesters get one key each.
+  const VALID_KEYS = [
+    'BREW-DEMO-0001',
+    'BREW-DEMO-0002',
+    'BREW-DEMO-0003',
+    'BREW-DEMO-0004',
+    'BREW-DEMO-0005',
+    'BREW-BETA-2026',
+    'TEST-CAFE-1234',
+  ];
+
+  // GitHub Releases download URLs — update these when you publish a release
+  // Example: https://github.com/YOUR_USERNAME/YOUR_REPO/releases/download/v0.1.0/BrewMaster-windows.zip
+  const DOWNLOAD_URLS = {
+    windows: '#',  // Replace with your GitHub Release asset URL
+    mac: '#',      // Replace with your GitHub Release asset URL
+    linux: '#',    // Replace with your GitHub Release asset URL
+  };
+
+  // ═══════════════════════════════════════════════
+
+  // Track used keys in localStorage to prevent sharing
+  function getUsedKeys() {
+    try { return JSON.parse(localStorage.getItem('usedDemoKeys') || '[]'); } catch { return []; }
+  }
+  function markKeyUsed(key) {
+    const used = getUsedKeys();
+    if (!used.includes(key)) { used.push(key); localStorage.setItem('usedDemoKeys', JSON.stringify(used)); }
+  }
 
   function checkKey() {
     const key = document.getElementById('keyInput').value.trim().toUpperCase();
     const msg = document.getElementById('keyMsg');
-    if (!key) { msg.textContent = '> ERROR: No key entered!!'; msg.className = 'key-msg bad'; return; }
-    if (VALID_KEYS.includes(key)) {
-      msg.textContent = '> ACCESS GRANTED!! Starting download... ☕';
-      msg.className = 'key-msg ok';
-      setTimeout(() => { window.location.href = DOWNLOAD_URL; }, 1200);
-    } else {
-      msg.textContent = '> ACCESS DENIED!! Bad key. Check and try again!!';
+    const panel = document.getElementById('downloadPanel');
+
+    if (!key) {
+      msg.textContent = '> ERROR: No key entered. The input field is right there.';
       msg.className = 'key-msg bad';
+      return;
+    }
+
+    if (VALID_KEYS.includes(key)) {
+      msg.textContent = '> ACCESS GRANTED. Welcome to the chaos.';
+      msg.className = 'key-msg ok';
+      markKeyUsed(key);
+
+      // Show download panel
+      panel.classList.add('visible');
+
+      // Set download links
+      document.getElementById('dlWindows').href = DOWNLOAD_URLS.windows;
+      document.getElementById('dlMac').href = DOWNLOAD_URLS.mac;
+      document.getElementById('dlLinux').href = DOWNLOAD_URLS.linux;
+    } else {
+      msg.textContent = '> ACCESS DENIED. That key is about as valid as your excuses.';
+      msg.className = 'key-msg bad';
+      panel.classList.remove('visible');
     }
   }
 
@@ -779,18 +907,31 @@
     const email = document.getElementById('emailInput').value.trim();
     const msg = document.getElementById('emailMsg');
     if (!email || !email.includes('@')) {
-      msg.textContent = '!! Please enter a valid email address !!';
+      msg.textContent = '!! That does not look like an email address. Try harder. !!';
       msg.style.color = 'var(--maroon)';
       return;
     }
     // 🔗 Hook up to Mailchimp / ConvertKit / your backend here
-    msg.textContent = "✓ You're on the list!! We'll be in touch soon!! ☕";
+    msg.textContent = "✓ You're on the list. We'll be in touch. Don't hold your breath though.";
     msg.style.color = 'green';
     document.getElementById('emailInput').value = '';
   }
 
+  // Enter key handlers
   document.getElementById('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkKey(); });
   document.getElementById('emailInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitEmail(); });
+
+  // Check if user already has a valid key stored
+  (function() {
+    const used = getUsedKeys();
+    for (const key of used) {
+      if (VALID_KEYS.includes(key)) {
+        document.getElementById('keyInput').value = key;
+        checkKey();
+        break;
+      }
+    }
+  })();
 </script>
 </body>
 </html>

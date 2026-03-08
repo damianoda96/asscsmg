@@ -1200,8 +1200,19 @@
   }
 
   // ═══════════════════════════════════════════════
-  // 💬 FORUM LOGIC
+  // 💬 FORUM LOGIC — Supabase backend
   // ═══════════════════════════════════════════════
+
+  const SB_URL = 'https://bdflhwcjgtqxwmfvcbdj.supabase.co';
+  const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJkZmxod2NqZ3RxeHdtZnZjYmRqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI5ODg5NjEsImV4cCI6MjA4ODU2NDk2MX0.5Y8oPIJtHxABvEP5Knkw4PMHslghYofUy1xXuOUG4ew';
+
+  function sbHeaders() {
+    return {
+      'Content-Type': 'application/json',
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+    };
+  }
 
   function selectTag(btn) {
     document.querySelectorAll('.forum-tag-btn').forEach(b => b.classList.remove('selected'));
@@ -1221,34 +1232,24 @@
     container.innerHTML = '<div class="forum-loading">> Loading posts from the server...</div>';
 
     try {
-      const result = await window.storage.list('forum-post-', true);
-      const keys = result?.keys || [];
+      const orderCol = forumSortMode === 'top' ? 'votes' : 'created_at';
+      const res = await fetch(
+        `${SB_URL}/rest/v1/forum_posts?select=*&order=${orderCol}.desc`,
+        { headers: sbHeaders() }
+      );
 
-      if (keys.length === 0) {
+      if (!res.ok) throw new Error('Failed to load');
+      const posts = await res.json();
+
+      if (!posts.length) {
         container.innerHTML = '<div class="forum-empty">> No posts yet. Be the first to post some feedback!<br/>> Don\'t be shy — the rats are watching.</div>';
         return;
       }
 
-      const posts = [];
-      for (const key of keys) {
-        try {
-          const r = await window.storage.get(key, true);
-          if (r?.value) posts.push(JSON.parse(r.value));
-        } catch {}
-      }
-
-      if (forumSortMode === 'new') {
-        posts.sort((a, b) => b.ts - a.ts);
-      } else {
-        posts.sort((a, b) => (b.votes || 0) - (a.votes || 0));
-      }
-
       container.innerHTML = '';
-      for (const post of posts) {
-        container.appendChild(buildPostEl(post));
-      }
+      for (const post of posts) container.appendChild(buildPostEl(post));
     } catch (err) {
-      container.innerHTML = '<div class="forum-loading">> Error loading posts. Try refreshing.</div>';
+      container.innerHTML = '<div class="forum-loading">> Error loading posts. Check your connection and try refreshing.</div>';
     }
   }
 
@@ -1260,7 +1261,7 @@
     const tagLabels = { bug: '🐛 BUG', feedback: '💬 FEEDBACK', idea: '💡 IDEA', other: '📌 OTHER' };
     const tag = post.tag || 'other';
     const hasVoted = votedPosts[post.id];
-    const ts = new Date(post.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+    const ts = new Date(post.created_at).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 
     div.innerHTML = `
       <div class="forum-post-header">
@@ -1270,10 +1271,10 @@
       <div class="forum-post-subject">${escHtml(post.subject)}</div>
       <div class="forum-post-body">${escHtml(post.body)}</div>
       <div class="forum-post-footer">
-        <button class="forum-upvote ${hasVoted ? 'voted' : ''}" onclick="upvotePost('${post.id}', this)">
+        <button class="forum-upvote ${hasVoted ? 'voted' : ''}" onclick="upvotePost('${post.id}', this, ${post.votes || 0})">
           ▲ ${post.votes || 0} ${hasVoted ? 'VOTED' : 'UPVOTE'}
         </button>
-        <span style="color:#334;font-size:0.85rem;">key: ${post.keyHint}</span>
+        <span style="color:#334;font-size:0.85rem;">key: ${escHtml(post.key_hint)}</span>
       </div>
     `;
     return div;
@@ -1303,20 +1304,26 @@
     msg.style.color = 'var(--aqua)';
     msg.textContent = '> Posting...';
 
-    const id = 'p' + Date.now() + Math.random().toString(36).slice(2, 6);
     const post = {
-      id,
+      id: 'p' + Date.now() + Math.random().toString(36).slice(2, 6),
       name,
       subject,
       body,
       tag: selectedTag,
       votes: 0,
-      ts: Date.now(),
-      keyHint: currentUserKey.slice(0, 4) + '-****-****',
+      created_at: Date.now(),
+      key_hint: currentUserKey.slice(0, 4) + '-****-****',
     };
 
     try {
-      await window.storage.set('forum-post-' + id, JSON.stringify(post), true);
+      const res = await fetch(`${SB_URL}/rest/v1/forum_posts`, {
+        method: 'POST',
+        headers: { ...sbHeaders(), 'Prefer': 'return=minimal' },
+        body: JSON.stringify(post),
+      });
+
+      if (!res.ok) throw new Error('Post failed');
+
       msg.style.color = 'var(--lime)';
       msg.textContent = '> Posted!! Thanks for the feedback.';
       document.getElementById('forumName').value = '';
@@ -1330,20 +1337,22 @@
     }
   }
 
-  async function upvotePost(id, btn) {
+  async function upvotePost(id, btn, currentVotes) {
     if (votedPosts[id]) return;
 
     votedPosts[id] = true;
     saveVotedPosts(votedPosts);
 
+    const newVotes = currentVotes + 1;
+    btn.textContent = '▲ ' + newVotes + ' VOTED';
+    btn.classList.add('voted');
+
     try {
-      const r = await window.storage.get('forum-post-' + id, true);
-      if (!r?.value) return;
-      const post = JSON.parse(r.value);
-      post.votes = (post.votes || 0) + 1;
-      await window.storage.set('forum-post-' + id, JSON.stringify(post), true);
-      btn.textContent = '▲ ' + post.votes + ' VOTED';
-      btn.classList.add('voted');
+      await fetch(`${SB_URL}/rest/v1/forum_posts?id=eq.${id}`, {
+        method: 'PATCH',
+        headers: { ...sbHeaders(), 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ votes: newVotes }),
+      });
     } catch {}
   }
 

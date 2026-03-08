@@ -1,0 +1,1367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>~~*~~ Super Secret Coffee Shop Game ~~*~~ OFFICIAL SITE</title>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Press+Start+2P&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --teal: #008080;
+      --yellow: #ffff00;
+      --lime: #00ff00;
+      --maroon: #800000;
+      --navy: #000080;
+      --silver: #c0c0c0;
+      --white: #ffffff;
+      --black: #000000;
+      --fuchsia: #ff00ff;
+      --aqua: #00ffff;
+      --red: #ff0000;
+      --orange: #ff6600;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--teal);
+      background-image:
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 4px,
+          rgba(0,0,0,0.08) 4px,
+          rgba(0,0,0,0.08) 5px
+        );
+      font-family: 'VT323', 'Courier New', monospace;
+      color: var(--black);
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32'%3E%3Ctext y='24' font-size='24'%3E%E2%98%95%3C/text%3E%3C/svg%3E") 8 8, auto;
+    }
+
+    .star {
+      position: fixed;
+      color: var(--yellow);
+      font-size: 1rem;
+      animation: twinkle 1.5s infinite alternate;
+      pointer-events: none;
+      z-index: 0;
+      user-select: none;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.2; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1.2); }
+    }
+
+    .page-wrap {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .top-bar {
+      background: var(--navy);
+      color: var(--yellow);
+      font-size: 1.2rem;
+      padding: 4px 0;
+      border-bottom: 3px solid var(--yellow);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    header {
+      background: var(--silver);
+      border: 4px outset var(--white);
+      margin: 8px;
+      text-align: center;
+    }
+
+    .header-rainbow {
+      height: 8px;
+      background: linear-gradient(to right, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, #ff00ff);
+    }
+
+    .header-inner {
+      padding: 1rem;
+      background: var(--navy);
+    }
+
+    .site-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: clamp(0.8rem, 3vw, 1.3rem);
+      color: var(--yellow);
+      text-shadow: 3px 3px 0 var(--maroon), -1px -1px 0 var(--fuchsia);
+      line-height: 1.8;
+      animation: colorCycle 2s infinite;
+    }
+
+    @keyframes colorCycle {
+      0%   { color: #ffff00; }
+      20%  { color: #00ff00; }
+      40%  { color: #00ffff; }
+      60%  { color: #ff00ff; }
+      80%  { color: #ff6600; }
+      100% { color: #ffff00; }
+    }
+
+    .site-subtitle {
+      color: var(--aqua);
+      font-size: 1.4rem;
+      margin-top: 0.5rem;
+      animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    .header-cup {
+      font-size: 4rem;
+      margin: 0.5rem 0;
+      display: block;
+      animation: bounce 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-10px); }
+    }
+
+    .under-construction {
+      background: repeating-linear-gradient(
+        -45deg,
+        #ffff00,
+        #ffff00 10px,
+        #000000 10px,
+        #000000 20px
+      );
+      color: var(--black);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      padding: 6px;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+
+    nav {
+      background: var(--maroon);
+      border: 3px outset var(--silver);
+      margin: 4px 8px;
+      padding: 6px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
+    }
+
+    nav a {
+      background: var(--silver);
+      color: var(--navy);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 6px 10px;
+      text-decoration: none;
+      border: 2px outset var(--white);
+      display: inline-block;
+    }
+
+    nav a:hover {
+      border-style: inset;
+      background: var(--teal);
+      color: var(--yellow);
+    }
+
+    main {
+      margin: 4px 8px;
+      display: grid;
+      gap: 8px;
+    }
+
+    .win {
+      background: var(--silver);
+      border: 3px outset var(--white);
+    }
+
+    .win-titlebar {
+      background: linear-gradient(to right, var(--navy), #1084d0);
+      color: var(--white);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      padding: 4px 6px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .win-buttons { display: flex; gap: 3px; }
+
+    .win-btn {
+      background: var(--silver);
+      border: 1px outset var(--white);
+      width: 14px;
+      height: 14px;
+      font-size: 0.55rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--black);
+    }
+
+    .win-body {
+      padding: 1rem;
+      background: var(--white);
+      border: 2px inset var(--silver);
+      margin: 4px;
+    }
+
+    .hero-win .win-body {
+      background: var(--black);
+      color: var(--lime);
+      font-size: 1.2rem;
+      line-height: 1.7;
+    }
+
+    .hero-desc {
+      color: var(--white);
+      font-size: 1.1rem;
+      margin: 1rem 0;
+      border-left: 4px solid var(--yellow);
+      padding-left: 1rem;
+    }
+
+    .hero-btns { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 1rem; }
+
+    .retro-btn {
+      background: var(--silver);
+      border: 3px outset var(--white);
+      color: var(--black);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      padding: 8px 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .retro-btn:hover { background: var(--yellow); }
+    .retro-btn:active { border-style: inset; }
+    .retro-btn.primary { background: var(--maroon); color: var(--yellow); border-color: var(--yellow); }
+    .retro-btn.primary:hover { background: var(--red); }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .feature-box {
+      background: var(--navy);
+      color: var(--lime);
+      border: 2px inset var(--silver);
+      padding: 0.75rem;
+      font-size: 1rem;
+      line-height: 1.5;
+    }
+
+    .feature-box .feat-title {
+      color: var(--yellow);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      margin-bottom: 0.5rem;
+      display: block;
+    }
+
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .screenshot-box {
+      background: var(--black);
+      border: 3px inset var(--silver);
+      aspect-ratio: 4/3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: var(--lime);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0.5rem;
+    }
+
+    .screenshot-box:hover { background: #001a00; }
+    .screenshot-box .ss-icon { font-size: 2rem; margin-bottom: 0.25rem; }
+
+    .demo-win .win-body { background: #0d0d0d; color: var(--lime); }
+
+    .key-row {
+      display: flex;
+      border: 2px inset var(--silver);
+      margin: 1rem 0 0.5rem;
+    }
+
+    .key-field {
+      flex: 1;
+      background: var(--black);
+      color: var(--lime);
+      border: none;
+      padding: 8px;
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      letter-spacing: 0.1em;
+      outline: none;
+    }
+
+    .key-field::placeholder { color: #005500; }
+
+    .key-go {
+      background: var(--maroon);
+      color: var(--yellow);
+      border: 2px outset var(--silver);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .key-go:hover { background: var(--red); }
+    .key-go:active { border-style: inset; }
+
+    .key-msg { font-size: 1.1rem; min-height: 1.5rem; }
+    .key-msg.ok { color: var(--lime); }
+    .key-msg.bad { color: var(--red); }
+
+    .download-panel {
+      display: none;
+      margin-top: 1rem;
+      border: 2px solid var(--lime);
+      background: #001a00;
+      padding: 1rem;
+    }
+
+    .download-panel.visible { display: block; }
+
+    .download-panel .dl-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      color: var(--lime);
+      margin-bottom: 0.75rem;
+    }
+
+    .dl-links { display: flex; flex-wrap: wrap; gap: 8px; }
+
+    .dl-btn {
+      background: var(--navy);
+      border: 2px outset var(--silver);
+      color: var(--lime);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 10px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .dl-btn:hover { background: var(--teal); color: var(--yellow); }
+
+    .dl-note {
+      color: #448844;
+      font-size: 0.95rem;
+      margin-top: 0.75rem;
+    }
+
+    .blog-post {
+      border: 2px inset var(--silver);
+      background: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .blog-post-title {
+      background: var(--teal);
+      color: var(--yellow);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 6px 8px;
+    }
+
+    .blog-post-body {
+      padding: 0.75rem;
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: var(--black);
+      background: #ffffee;
+    }
+
+    .blog-date { color: var(--maroon); font-size: 0.9rem; margin-bottom: 0.4rem; display: block; }
+
+    .email-win .win-body { background: #fffde7; }
+
+    .retro-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      color: var(--navy);
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .retro-input {
+      background: var(--white);
+      border: 2px inset var(--silver);
+      color: var(--black);
+      font-family: 'VT323', monospace;
+      font-size: 1.3rem;
+      padding: 6px 8px;
+      width: 100%;
+      outline: none;
+      margin-bottom: 8px;
+    }
+
+    .email-row { display: flex; gap: 6px; align-items: flex-end; }
+    .email-row .retro-input { margin-bottom: 0; }
+    .email-msg { font-size: 1rem; margin-top: 0.5rem; color: var(--maroon); min-height: 1.2rem; }
+
+    .sidebar-stuff { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+
+    .counter-box {
+      background: var(--black);
+      color: var(--lime);
+      border: 3px inset var(--silver);
+      padding: 0.75rem;
+      text-align: center;
+      font-size: 1rem;
+    }
+
+    .counter-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.45rem;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .counter-num { font-size: 2.5rem; color: var(--lime); letter-spacing: 0.1em; }
+
+    .badges-box {
+      background: var(--navy);
+      border: 3px inset var(--silver);
+      padding: 0.75rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-content: flex-start;
+    }
+
+    .badge {
+      background: var(--silver);
+      border: 2px outset var(--white);
+      padding: 4px 8px;
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      color: var(--black);
+      white-space: nowrap;
+    }
+
+    .badge.hot { background: var(--red); color: var(--yellow); }
+    .badge.new-badge { background: var(--lime); color: var(--black); }
+    .badge.cool { background: var(--aqua); color: var(--black); }
+
+    footer {
+      margin: 4px 8px 16px;
+      background: var(--navy);
+      border: 3px outset var(--silver);
+      text-align: center;
+      padding: 1rem;
+      color: var(--silver);
+      font-size: 0.9rem;
+    }
+
+    .footer-rainbow {
+      height: 6px;
+      background: linear-gradient(to right, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #8b00ff, #ff00ff);
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-links { margin: 0.5rem 0; }
+    .footer-links a { color: var(--aqua); text-decoration: none; margin: 0 8px; font-size: 0.85rem; }
+    .footer-links a:hover { color: var(--yellow); }
+
+    .best-viewed {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      color: #888;
+      margin-top: 0.5rem;
+    }
+
+    .retro-h2 {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.7rem;
+      color: var(--yellow);
+      text-shadow: 2px 2px 0 var(--maroon);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .retro-h2::before, .retro-h2::after { content: '★'; color: var(--lime); font-size: 0.6rem; }
+
+    .retro-hr {
+      border: none;
+      height: 4px;
+      background: repeating-linear-gradient(to right, var(--teal), var(--teal) 4px, var(--navy) 4px, var(--navy) 8px);
+      margin: 0.75rem 0;
+    }
+
+    ::-webkit-scrollbar { width: 14px; }
+    ::-webkit-scrollbar-track { background: var(--silver); }
+    ::-webkit-scrollbar-thumb { background: var(--navy); border: 2px outset var(--silver); }
+
+    @media (max-width: 600px) {
+      .features-grid { grid-template-columns: 1fr; }
+      .screenshot-grid { grid-template-columns: repeat(2, 1fr); }
+      .sidebar-stuff { grid-template-columns: 1fr; }
+      nav a { font-size: 0.45rem; }
+    }
+
+    /* ===== FORUM STYLES ===== */
+    .forum-win .win-body { background: #0a0a1a; color: var(--lime); }
+
+    .forum-locked {
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--silver);
+      font-size: 1.1rem;
+      line-height: 1.8;
+    }
+
+    .forum-locked .lock-icon { font-size: 3rem; display: block; margin-bottom: 1rem; animation: bounce 1s ease-in-out infinite alternate; }
+
+    .forum-locked .lock-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.6rem;
+      color: var(--red);
+      margin-bottom: 1rem;
+    }
+
+    .forum-panel { display: none; }
+    .forum-panel.unlocked { display: block; }
+
+    .forum-compose {
+      background: #111133;
+      border: 2px inset var(--silver);
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .forum-compose-title {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.55rem;
+      color: var(--yellow);
+      margin-bottom: 0.75rem;
+    }
+
+    .forum-input {
+      background: var(--black);
+      border: 2px inset var(--silver);
+      color: var(--lime);
+      font-family: 'VT323', monospace;
+      font-size: 1.2rem;
+      padding: 6px 8px;
+      width: 100%;
+      outline: none;
+      margin-bottom: 6px;
+    }
+
+    .forum-textarea {
+      background: var(--black);
+      border: 2px inset var(--silver);
+      color: var(--lime);
+      font-family: 'VT323', monospace;
+      font-size: 1.1rem;
+      padding: 6px 8px;
+      width: 100%;
+      outline: none;
+      resize: vertical;
+      min-height: 80px;
+      margin-bottom: 6px;
+    }
+
+    .forum-tag-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .forum-tag-btn {
+      background: var(--navy);
+      border: 2px outset var(--silver);
+      color: var(--silver);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      padding: 5px 8px;
+      cursor: pointer;
+    }
+
+    .forum-tag-btn.selected { background: var(--teal); color: var(--yellow); border-style: inset; }
+    .forum-tag-btn:hover { background: var(--maroon); color: var(--yellow); }
+
+    .forum-submit-row { display: flex; justify-content: space-between; align-items: center; }
+    .forum-submit-msg { font-size: 1rem; color: var(--aqua); }
+
+    .forum-posts { margin-top: 0.5rem; }
+
+    .forum-post {
+      border: 2px inset var(--silver);
+      background: #0d0d2a;
+      margin-bottom: 8px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
+
+    .forum-post-header {
+      background: linear-gradient(to right, #1a1a4a, #002255);
+      padding: 5px 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .forum-post-meta {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.42rem;
+      color: var(--aqua);
+    }
+
+    .forum-post-tag {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.38rem;
+      padding: 2px 6px;
+      border: 1px solid;
+    }
+
+    .forum-post-tag.bug     { color: var(--red);    border-color: var(--red);    background: #1a0000; }
+    .forum-post-tag.feedback { color: var(--lime);   border-color: var(--lime);   background: #001a00; }
+    .forum-post-tag.idea    { color: var(--yellow);  border-color: var(--yellow); background: #1a1a00; }
+    .forum-post-tag.other   { color: var(--silver);  border-color: var(--silver); background: #111; }
+
+    .forum-post-subject {
+      color: var(--yellow);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.5rem;
+      padding: 6px 8px 2px;
+    }
+
+    .forum-post-body {
+      padding: 4px 8px 8px;
+      font-size: 1.1rem;
+      color: var(--lime);
+      line-height: 1.6;
+    }
+
+    .forum-post-footer {
+      padding: 4px 8px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      border-top: 1px solid #1a1a3a;
+    }
+
+    .forum-upvote {
+      background: none;
+      border: 1px solid var(--silver);
+      color: var(--silver);
+      font-family: 'VT323', monospace;
+      font-size: 1rem;
+      padding: 2px 8px;
+      cursor: pointer;
+      transition: all 0.1s;
+    }
+
+    .forum-upvote:hover { background: var(--navy); color: var(--yellow); border-color: var(--yellow); }
+    .forum-upvote.voted { background: var(--navy); color: var(--yellow); border-color: var(--yellow); }
+
+    .forum-empty {
+      text-align: center;
+      color: #334;
+      font-size: 1.1rem;
+      padding: 2rem;
+    }
+
+    .forum-sort-row {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 8px;
+      align-items: center;
+    }
+
+    .forum-sort-label {
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.4rem;
+      color: var(--silver);
+    }
+
+    .forum-sort-btn {
+      background: var(--navy);
+      border: 2px outset var(--silver);
+      color: var(--silver);
+      font-family: 'Press Start 2P', monospace;
+      font-size: 0.38rem;
+      padding: 4px 7px;
+      cursor: pointer;
+    }
+
+    .forum-sort-btn.active { background: var(--teal); color: var(--yellow); border-style: inset; }
+
+    .forum-loading {
+      text-align: center;
+      color: var(--aqua);
+      font-size: 1.1rem;
+      padding: 1rem;
+      animation: blink 1s step-end infinite;
+    }
+
+    .forum-key-hint {
+      font-size: 0.9rem;
+      color: #446644;
+      margin-top: 0.75rem;
+    }
+  </style>
+</head>
+<body>
+
+<div class="star" style="top:8%;left:3%;animation-delay:0s">★</div>
+<div class="star" style="top:15%;right:4%;animation-delay:0.3s">✦</div>
+<div class="star" style="top:35%;left:1%;animation-delay:0.7s">★</div>
+<div class="star" style="top:55%;right:2%;animation-delay:0.2s">✦</div>
+<div class="star" style="top:75%;left:2%;animation-delay:0.9s">★</div>
+<div class="star" style="top:90%;right:3%;animation-delay:0.5s">✦</div>
+
+<div class="top-bar">
+  <marquee behavior="scroll" scrollamount="4">
+    ☕ WELCOME TO THE ONLY COFFEE SHOP GAME WITH A RAT-INFESTED BASEMENT ☕ &nbsp;&nbsp;&nbsp; 🔑 DEMO KEYS NOW AVAILABLE FOR PLAYTESTERS 🔑 &nbsp;&nbsp;&nbsp; 🐀 YES THE RATS ARE A FEATURE NOT A BUG &nbsp;&nbsp;&nbsp; ☕ BEST VIEWED WHILE OVERCAFFEINATED ☕ &nbsp;&nbsp;&nbsp; 🎮 MADE WITH GODOT 4 + REGRET 🎮 &nbsp;&nbsp;&nbsp;
+  </marquee>
+</div>
+
+<div class="page-wrap">
+
+  <header>
+    <div class="header-rainbow"></div>
+    <div class="header-inner">
+      <span class="header-cup">☕</span>
+      <div class="site-title">~~*~~ A SUPER SECRET<br/>COFFEE SHOP MANAGEMENT GAME ~~*~~</div>
+      <div class="site-subtitle">[ OFFICIAL HOMEPAGE ]</div>
+    </div>
+    <div class="under-construction">🚧 &nbsp; WE PROMISE THIS SITE LOOKS BAD ON PURPOSE &nbsp; 🚧</div>
+  </header>
+
+  <nav>
+    <a href="#about">[ ABOUT ]</a>
+    <a href="#screenshots">[ SCREENSHOTS ]</a>
+    <a href="#demo">[ GET DEMO ]</a>
+    <a href="#blog">[ DEV BLOG ]</a>
+    <a href="#guestbook">[ MAILING LIST ]</a>
+    <a href="#forum">[ PLAYTESTER FORUM ]</a>
+    <a href="#links">[ COOL LINKS ]</a>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <div class="win hero-win" id="about">
+      <div class="win-titlebar">
+        <span>📁 about_the_game.exe</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+        <div class="retro-h2">WHAT IS THIS GAME???</div>
+        <p>
+          &gt; You wanted a cozy coffee shop sim? Cool, we made one.<br/>
+          &gt; Brew espressos. Steam milk. Serve ungrateful pixel people.<br/>
+          &gt; Get evicted when you can't make rent. Work at a Dumb Starbucks to recover.<br/>
+          &gt; Oh, and there's a rat-infested dungeon under your shop. You're welcome.
+        </p>
+        <p class="hero-desc">"A top-down coffee shop management game where everything that can go wrong will go wrong — and you'll still come back for one more day."</p>
+        <div class="retro-hr"></div>
+        <div class="hero-btns">
+          <a href="#demo" class="retro-btn primary">▶ TRY THE DEMO</a>
+          <a href="#guestbook" class="retro-btn">✉ MAILING LIST</a>
+          <a href="#screenshots" class="retro-btn">📷 SCREENSHOTS</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="win">
+      <div class="win-titlebar">
+        <span>⭐ things_we_actually_built.txt</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body" style="background:var(--navy);">
+        <div class="retro-h2">FEATURES (REAL ONES)</div>
+        <div class="features-grid">
+          <div class="feature-box">
+            <span class="feat-title">☕ BREW DRINKS</span>
+            Espressos, lattes, cappuccinos — pulled through lovingly janky minigames. Mess up the order and watch your reputation tank in real time.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🏪 RUN YOUR SHOP</span>
+            Full day cycle: PREP, SERVICE, CLOSING, RESULTS. Clean messes, fix broken tables, repair busted windows. Glamorous, right?
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🎨 DECORATE EVERYTHING</span>
+            Plants, lights, rugs, arcade cabinets — place them wherever you want. Buy unlimited flooring tiles because we're not monsters.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">📈 EXPAND OR DIE</span>
+            Upgrade your lease to get a bigger shop. Miss rent and get evicted. Work recovery shifts at Dumb Starbucks until you can reopen. The American Dream.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🐀 BASEMENT DUNGEON</span>
+            Your shop has a basement. It's full of rats and bugs. Grab a broom and clear it floor by floor. Find golden mugs and ancient coffee grinders as loot. Normal coffee shop stuff.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🌆 EXPLORE THE STREET</span>
+            Step outside during prep to visit the plant shop, thrift store, and that one competitor that's definitely not a Starbucks. Name your shop whatever you want — nobody can stop you.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">👤 CHARACTER CREATION</span>
+            Pick your hair, skin, eyes, beard, outfit. Choose from 8 hairstyles including mohawk and bald. Name yourself. Name your shop. Live your truth.
+          </div>
+          <div class="feature-box">
+            <span class="feat-title">🎲 RANDOM EVENTS</span>
+            Health inspectors. Celebrity customers who tip huge. Equipment breakdowns mid-rush. Weather that affects how many people show up. Fun.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="win" id="screenshots">
+      <div class="win-titlebar">
+        <span>📷 screenshots.zip</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body" style="background:#111;">
+        <div class="retro-h2">SCREENSHOTS!!</div>
+        <marquee behavior="alternate" scrollamount="2" style="color:var(--yellow);font-size:0.85rem;margin-bottom:8px;">
+          ★ Real screenshots coming when the dev stops adding features for 5 minutes ★
+        </marquee>
+        <div class="screenshot-grid">
+          <div class="screenshot-box"><span class="ss-icon">☕</span>Your Sad Little Shop</div>
+          <div class="screenshot-box"><span class="ss-icon">🐀</span>The Rat Basement</div>
+          <div class="screenshot-box"><span class="ss-icon">🌆</span>Street Exploration</div>
+          <div class="screenshot-box"><span class="ss-icon">🛒</span>Shop Catalog</div>
+          <div class="screenshot-box"><span class="ss-icon">👤</span>Character Creator</div>
+          <div class="screenshot-box"><span class="ss-icon">📊</span>End of Day Results</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEMO KEY -->
+    <div class="win demo-win" id="demo">
+      <div class="win-titlebar">
+        <span>🔑 demo_access.exe — PROVE YOU'RE WORTHY</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+        <div class="retro-h2">GOT A KEY? ENTER IT!!</div>
+        <p style="color:var(--silver);font-size:1.1rem;margin-bottom:0.5rem;">
+          &gt; Demo keys are handed out to playtesters like scarce rations.<br/>
+          &gt; If you don't have one, join the mailing list below and beg politely.<br/>
+          &gt; Format: XXXX-XXXX-XXXX
+        </p>
+        <div class="key-row">
+          <input class="key-field" id="keyInput" type="text" placeholder="XXXX-XXXX-XXXX" maxlength="19" autocomplete="off"/>
+          <button class="key-go" onclick="checkKey()">UNLOCK &gt;&gt;</button>
+        </div>
+        <div class="key-msg" id="keyMsg">&gt; Awaiting input... (no pressure)</div>
+
+        <!-- Download panel (hidden until valid key) -->
+        <div class="download-panel" id="downloadPanel">
+          <div class="dl-title">ACCESS GRANTED — CHOOSE YOUR POISON:</div>
+          <div class="dl-links">
+            <a class="dl-btn" id="dlWindows" href="#" target="_blank">💾 WINDOWS (.zip)</a>
+            <a class="dl-btn" id="dlMac" href="#" target="_blank">🍎 macOS (.zip)</a>
+            <a class="dl-btn" id="dlLinux" href="#" target="_blank">🐧 LINUX (.zip)</a>
+          </div>
+          <div class="dl-note">
+            &gt; Unzip it. Run the executable. Don't ask why there's a basement.<br/>
+            &gt; Report bugs to the mailing list. Or don't. We'll find them eventually.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VISITOR COUNTER + BADGES -->
+    <div class="sidebar-stuff" id="links">
+      <div class="counter-box">
+        <div class="counter-label">★ VISITOR COUNT ★</div>
+        <div class="counter-num" id="visitorCount">000000</div>
+        <div style="font-size:0.8rem;color:var(--aqua);margin-top:0.4rem;">You are visitor #<span id="myNum">??????</span></div>
+      </div>
+      <div class="badges-box">
+        <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--yellow);width:100%;margin-bottom:4px;">★ WEB BADGES ★</div>
+        <div class="badge hot">🔥 RENT IS DUE</div>
+        <div class="badge new-badge">🆕 INDIE DEV</div>
+        <div class="badge cool">🎮 GODOT 4</div>
+        <div class="badge">💾 SAVE OFTEN</div>
+        <div class="badge hot">🐀 RAT SLAYER</div>
+        <div class="badge cool">🌐 Y2K STYLE</div>
+        <div class="badge">☕ SEND COFFEE</div>
+        <div class="badge new-badge">🚧 ALPHA BUILD</div>
+      </div>
+    </div>
+
+    <!-- DEV BLOG -->
+    <div class="win" id="blog">
+      <div class="win-titlebar">
+        <span>📝 devlog.html — DISPATCHES FROM THE TRENCHES</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+        <div class="retro-h2">DEV BLOG !!</div>
+
+        <div class="blog-post">
+          <div class="blog-post-title">📅 MARCH 8, 2026 — WE ADDED A DUNGEON UNDER THE COFFEE SHOP</div>
+          <div class="blog-post-body">
+            <span class="blog-date">Posted by: DevTeam (questionable decisions dept.)</span>
+            So we were building a nice, wholesome coffee shop sim and someone said "what if there was a basement full of rats." Long story short, there's now a full roguelike dungeon under your cafe. Procedurally generated rooms, broom-based combat, loot chests, and floor progression gated by your lease tier. You can find golden mugs and ancient coffee grinders down there. We don't know what we are anymore but we're committed.
+          </div>
+        </div>
+
+        <div class="blog-post">
+          <div class="blog-post-title">📅 MARCH 5, 2026 — SHOP NAMING + CHARACTER CREATION</div>
+          <div class="blog-post-body">
+            <span class="blog-date">Posted by: DevTeam</span>
+            You can now name yourself and your shop during character creation. Also added the ability to rename your shop later for $100, because apparently capitalism applies to signage too. Fixed the cement floor situation — grey and clean now instead of that busy brown tile nightmare. Also removed quantity limits on flooring because restricting floor tiles is a crime against interior design.
+          </div>
+        </div>
+
+        <div class="blog-post">
+          <div class="blog-post-title">📅 FEB 18, 2026 — CUSTOMER AI THAT ACTUALLY WORKS (MOSTLY)</div>
+          <div class="blog-post-body">
+            <span class="blog-date">Posted by: DevTeam</span>
+            Customers now walk in through the door, navigate to seats, order drinks, get impatient if you take too long, and leave messes on tables for you to clean up. Just like real life. They also have speech bubbles and will visibly judge you. The satisfaction system tracks order quality, wait time, and whether you even remembered to steam the milk.
+          </div>
+        </div>
+
+        <div class="blog-post">
+          <div class="blog-post-title">📅 FEB 1, 2026 — WHY WE PICKED GODOT 4</div>
+          <div class="blog-post-body">
+            <span class="blog-date">Posted by: DevTeam</span>
+            Tried Unity (licensing drama). Tried GameMaker (not enough pain). Landed on Godot 4 — free, open source, and the GDScript syntax hits that sweet spot between "readable" and "what do you mean there's no semicolons." Using GL Compatibility renderer because we're targeting potato hardware. All sprites are generated via Python/Pillow scripts because hand-drawing pixel art is for people with talent.
+          </div>
+        </div>
+
+        <div style="text-align:center;margin-top:0.75rem;">
+          <button class="retro-btn">📜 THAT'S ALL THE POSTS, STOP SCROLLING</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- EMAIL SIGNUP -->
+    <div class="win email-win" id="guestbook">
+      <div class="win-titlebar">
+        <span>✉ mailing_list.htm — WE WON'T SPAM YOU (PROBABLY)</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+        <div class="retro-h2">JOIN THE MAILING LIST !!</div>
+        <p style="margin-bottom:1rem;font-size:1.1rem;color:var(--navy);">
+          Get notified when demo keys drop, major updates land, or we do something really questionable with the game design. No spam — we're too busy fixing bugs to write newsletters.
+        </p>
+        <label class="retro-label">YOUR EMAIL ADDRESS:</label>
+        <div class="email-row">
+          <input class="retro-input" id="emailInput" type="email" placeholder="yourname@email.com" style="flex:1"/>
+          <button class="retro-btn primary" onclick="submitEmail()" style="white-space:nowrap;">SIGN ME UP &gt;&gt;</button>
+        </div>
+        <div class="email-msg" id="emailMsg">★ We'll email you when keys are ready (or when something funny happens) ★</div>
+      </div>
+    </div>
+
+    <!-- PLAYTESTER FORUM -->
+    <div class="win forum-win" id="forum">
+      <div class="win-titlebar">
+        <span>💬 playtester_forum.exe — AUTHORIZED PERSONNEL ONLY</span>
+        <div class="win-buttons">
+          <div class="win-btn">_</div><div class="win-btn">□</div><div class="win-btn">✕</div>
+        </div>
+      </div>
+      <div class="win-body">
+
+        <!-- LOCKED STATE -->
+        <div class="forum-locked" id="forumLocked">
+          <span class="lock-icon">🔒</span>
+          <div class="lock-title">ACCESS RESTRICTED</div>
+          <div style="color:var(--silver);">
+            &gt; This forum is for playtesters only.<br/>
+            &gt; Enter your demo key above to unlock it.<br/>
+            &gt; Don't have a key? Join the mailing list and beg.
+          </div>
+          <div class="forum-key-hint">[ scroll up to the demo key section and enter your key first ]</div>
+        </div>
+
+        <!-- UNLOCKED FORUM PANEL -->
+        <div class="forum-panel" id="forumPanel">
+          <div class="retro-h2">PLAYTESTER FEEDBACK BOARD</div>
+
+          <!-- COMPOSE -->
+          <div class="forum-compose">
+            <div class="forum-compose-title">📝 POST NEW FEEDBACK</div>
+            <input class="forum-input" id="forumName" type="text" placeholder="Your name / handle" maxlength="30"/>
+            <input class="forum-input" id="forumSubject" type="text" placeholder="Subject line (keep it short)" maxlength="80"/>
+            <textarea class="forum-textarea" id="forumBody" placeholder="Describe the bug, feedback or idea in detail...&#10;&#10;Be specific! Screenshots help if you can describe what you saw." maxlength="1000"></textarea>
+            <div class="forum-tag-row">
+              <div style="font-family:'Press Start 2P',monospace;font-size:0.4rem;color:var(--silver);align-self:center;">TAG:</div>
+              <button class="forum-tag-btn selected" data-tag="feedback" onclick="selectTag(this)">💬 FEEDBACK</button>
+              <button class="forum-tag-btn" data-tag="bug" onclick="selectTag(this)">🐛 BUG REPORT</button>
+              <button class="forum-tag-btn" data-tag="idea" onclick="selectTag(this)">💡 IDEA</button>
+              <button class="forum-tag-btn" data-tag="other" onclick="selectTag(this)">📌 OTHER</button>
+            </div>
+            <div class="forum-submit-row">
+              <button class="retro-btn primary" onclick="submitPost()">POST IT &gt;&gt;</button>
+              <span class="forum-submit-msg" id="forumSubmitMsg"></span>
+            </div>
+          </div>
+
+          <!-- SORT -->
+          <div class="forum-sort-row">
+            <span class="forum-sort-label">SORT:</span>
+            <button class="forum-sort-btn active" id="sortNew" onclick="setSort('new')">🕐 NEWEST</button>
+            <button class="forum-sort-btn" id="sortTop" onclick="setSort('top')">🔥 TOP RATED</button>
+          </div>
+
+          <!-- POSTS LIST -->
+          <div class="forum-posts" id="forumPosts">
+            <div class="forum-loading">&gt; Loading posts...</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+  <footer>
+    <div class="footer-rainbow"></div>
+    <div class="footer-title">~~*~~ A SUPER SECRET COFFEE SHOP MANAGEMENT GAME ~~*~~</div>
+    <div class="footer-links">
+      <a href="#">HOME</a>
+      <a href="#">EMAIL US</a>
+      <a href="#">SITEMAP (lol)</a>
+      <a href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;">BACK TO TOP ↑</a>
+    </div>
+    <div style="color:var(--silver);font-size:0.9rem;margin-top:0.5rem;">
+      Made with ☕ + 💾 + an AI that keeps suggesting we add more features<br/>
+      © 2026 — All Rights Reserved (especially the rats)
+    </div>
+    <div class="best-viewed">★ BEST VIEWED IN NETSCAPE NAVIGATOR 4.0 AT 800x600 WITH LOW EXPECTATIONS ★</div>
+  </footer>
+
+</div>
+
+<div class="top-bar" style="border-top:3px solid var(--yellow);border-bottom:none;">
+  <marquee behavior="scroll" direction="right" scrollamount="3">
+    ✦ THANKS FOR VISITING!! ✦ &nbsp;&nbsp; BOOKMARK THIS PAGE &nbsp;&nbsp; ✦ TELL EXACTLY ONE FRIEND!! ✦ &nbsp;&nbsp; DO NOT FEED THE BASEMENT RATS &nbsp;&nbsp; ✦ COFFEE IS A PERSONALITY TRAIT ✦
+  </marquee>
+</div>
+
+<script>
+  // === Visitor Counter (cosmetic) ===
+  const base = 419823;
+  const myVisit = Math.floor(Math.random() * 300) + base;
+  document.getElementById('visitorCount').textContent = String(myVisit + 47).padStart(6, '0');
+  document.getElementById('myNum').textContent = String(myVisit).padStart(6, '0');
+
+  // === Key Input Auto-formatting ===
+  document.getElementById('keyInput').addEventListener('input', function() {
+    let val = this.value.replace(/[^A-Za-z0-9]/g, '').toUpperCase();
+    let fmt = val.match(/.{1,4}/g)?.join('-') || val;
+    this.value = fmt.slice(0, 19);
+  });
+
+  // ═══════════════════════════════════════════════
+  // 🔑 KEY SYSTEM CONFIG — EDIT THESE VALUES
+  // ═══════════════════════════════════════════════
+
+  const VALID_KEYS = [
+    'BREW-DEMO-0001',
+    'BREW-DEMO-0002',
+    'BREW-DEMO-0003',
+    'BREW-DEMO-0004',
+    'BREW-DEMO-0005',
+    'BREW-BETA-2026',
+    'TEST-CAFE-1234',
+  ];
+
+  const DOWNLOAD_URLS = {
+    windows: '#',
+    mac: '#',
+    linux: '#',
+  };
+
+  // ═══════════════════════════════════════════════
+
+  let currentUserKey = null;
+  let forumSortMode = 'new';
+  let selectedTag = 'feedback';
+  let votedPosts = {};
+
+  function getUsedKeys() {
+    try { return JSON.parse(localStorage.getItem('usedDemoKeys') || '[]'); } catch { return []; }
+  }
+  function markKeyUsed(key) {
+    const used = getUsedKeys();
+    if (!used.includes(key)) { used.push(key); localStorage.setItem('usedDemoKeys', JSON.stringify(used)); }
+  }
+  function getVotedPosts() {
+    try { return JSON.parse(localStorage.getItem('votedPosts') || '{}'); } catch { return {}; }
+  }
+  function saveVotedPosts(v) {
+    try { localStorage.setItem('votedPosts', JSON.stringify(v)); } catch {}
+  }
+
+  function checkKey() {
+    const key = document.getElementById('keyInput').value.trim().toUpperCase();
+    const msg = document.getElementById('keyMsg');
+    const panel = document.getElementById('downloadPanel');
+
+    if (!key) {
+      msg.textContent = '> ERROR: No key entered. The input field is right there.';
+      msg.className = 'key-msg bad';
+      return;
+    }
+
+    if (VALID_KEYS.includes(key)) {
+      msg.textContent = '> ACCESS GRANTED. Welcome to the chaos.';
+      msg.className = 'key-msg ok';
+      markKeyUsed(key);
+      currentUserKey = key;
+
+      panel.classList.add('visible');
+      document.getElementById('dlWindows').href = DOWNLOAD_URLS.windows;
+      document.getElementById('dlMac').href = DOWNLOAD_URLS.mac;
+      document.getElementById('dlLinux').href = DOWNLOAD_URLS.linux;
+
+      // Unlock forum
+      document.getElementById('forumLocked').style.display = 'none';
+      document.getElementById('forumPanel').classList.add('unlocked');
+      votedPosts = getVotedPosts();
+      loadForumPosts();
+    } else {
+      msg.textContent = '> ACCESS DENIED. That key is about as valid as your excuses.';
+      msg.className = 'key-msg bad';
+      panel.classList.remove('visible');
+      currentUserKey = null;
+      document.getElementById('forumLocked').style.display = '';
+      document.getElementById('forumPanel').classList.remove('unlocked');
+    }
+  }
+
+  function submitEmail() {
+    const email = document.getElementById('emailInput').value.trim();
+    const msg = document.getElementById('emailMsg');
+    if (!email || !email.includes('@')) {
+      msg.textContent = '!! That does not look like an email address. Try harder. !!';
+      msg.style.color = 'var(--maroon)';
+      return;
+    }
+    msg.textContent = "✓ You're on the list. We'll be in touch. Don't hold your breath though.";
+    msg.style.color = 'green';
+    document.getElementById('emailInput').value = '';
+  }
+
+  // ═══════════════════════════════════════════════
+  // 💬 FORUM LOGIC
+  // ═══════════════════════════════════════════════
+
+  function selectTag(btn) {
+    document.querySelectorAll('.forum-tag-btn').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    selectedTag = btn.dataset.tag;
+  }
+
+  function setSort(mode) {
+    forumSortMode = mode;
+    document.getElementById('sortNew').classList.toggle('active', mode === 'new');
+    document.getElementById('sortTop').classList.toggle('active', mode === 'top');
+    loadForumPosts();
+  }
+
+  async function loadForumPosts() {
+    const container = document.getElementById('forumPosts');
+    container.innerHTML = '<div class="forum-loading">> Loading posts from the server...</div>';
+
+    try {
+      const result = await window.storage.list('forum-post-', true);
+      const keys = result?.keys || [];
+
+      if (keys.length === 0) {
+        container.innerHTML = '<div class="forum-empty">> No posts yet. Be the first to post some feedback!<br/>> Don\'t be shy — the rats are watching.</div>';
+        return;
+      }
+
+      const posts = [];
+      for (const key of keys) {
+        try {
+          const r = await window.storage.get(key, true);
+          if (r?.value) posts.push(JSON.parse(r.value));
+        } catch {}
+      }
+
+      if (forumSortMode === 'new') {
+        posts.sort((a, b) => b.ts - a.ts);
+      } else {
+        posts.sort((a, b) => (b.votes || 0) - (a.votes || 0));
+      }
+
+      container.innerHTML = '';
+      for (const post of posts) {
+        container.appendChild(buildPostEl(post));
+      }
+    } catch (err) {
+      container.innerHTML = '<div class="forum-loading">> Error loading posts. Try refreshing.</div>';
+    }
+  }
+
+  function buildPostEl(post) {
+    const div = document.createElement('div');
+    div.className = 'forum-post';
+    div.id = 'post-' + post.id;
+
+    const tagLabels = { bug: '🐛 BUG', feedback: '💬 FEEDBACK', idea: '💡 IDEA', other: '📌 OTHER' };
+    const tag = post.tag || 'other';
+    const hasVoted = votedPosts[post.id];
+    const ts = new Date(post.ts).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+
+    div.innerHTML = `
+      <div class="forum-post-header">
+        <span class="forum-post-meta">👤 ${escHtml(post.name)} &nbsp;|&nbsp; 🕐 ${ts}</span>
+        <span class="forum-post-tag ${tag}">${tagLabels[tag] || '📌 OTHER'}</span>
+      </div>
+      <div class="forum-post-subject">${escHtml(post.subject)}</div>
+      <div class="forum-post-body">${escHtml(post.body)}</div>
+      <div class="forum-post-footer">
+        <button class="forum-upvote ${hasVoted ? 'voted' : ''}" onclick="upvotePost('${post.id}', this)">
+          ▲ ${post.votes || 0} ${hasVoted ? 'VOTED' : 'UPVOTE'}
+        </button>
+        <span style="color:#334;font-size:0.85rem;">key: ${post.keyHint}</span>
+      </div>
+    `;
+    return div;
+  }
+
+  function escHtml(str) {
+    return String(str || '')
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/\n/g, '<br/>');
+  }
+
+  async function submitPost() {
+    if (!currentUserKey) return;
+
+    const name    = document.getElementById('forumName').value.trim();
+    const subject = document.getElementById('forumSubject').value.trim();
+    const body    = document.getElementById('forumBody').value.trim();
+    const msg     = document.getElementById('forumSubmitMsg');
+
+    if (!name)    { msg.style.color = 'var(--red)'; msg.textContent = '> Enter your name first!'; return; }
+    if (!subject) { msg.style.color = 'var(--red)'; msg.textContent = '> Give this post a subject!'; return; }
+    if (!body)    { msg.style.color = 'var(--red)'; msg.textContent = '> Write something first!'; return; }
+
+    msg.style.color = 'var(--aqua)';
+    msg.textContent = '> Posting...';
+
+    const id = 'p' + Date.now() + Math.random().toString(36).slice(2, 6);
+    const post = {
+      id,
+      name,
+      subject,
+      body,
+      tag: selectedTag,
+      votes: 0,
+      ts: Date.now(),
+      keyHint: currentUserKey.slice(0, 4) + '-****-****',
+    };
+
+    try {
+      await window.storage.set('forum-post-' + id, JSON.stringify(post), true);
+      msg.style.color = 'var(--lime)';
+      msg.textContent = '> Posted!! Thanks for the feedback.';
+      document.getElementById('forumName').value = '';
+      document.getElementById('forumSubject').value = '';
+      document.getElementById('forumBody').value = '';
+      setTimeout(() => { msg.textContent = ''; }, 3000);
+      loadForumPosts();
+    } catch (err) {
+      msg.style.color = 'var(--red)';
+      msg.textContent = '> Failed to post. Try again.';
+    }
+  }
+
+  async function upvotePost(id, btn) {
+    if (votedPosts[id]) return;
+
+    votedPosts[id] = true;
+    saveVotedPosts(votedPosts);
+
+    try {
+      const r = await window.storage.get('forum-post-' + id, true);
+      if (!r?.value) return;
+      const post = JSON.parse(r.value);
+      post.votes = (post.votes || 0) + 1;
+      await window.storage.set('forum-post-' + id, JSON.stringify(post), true);
+      btn.textContent = '▲ ' + post.votes + ' VOTED';
+      btn.classList.add('voted');
+    } catch {}
+  }
+
+  // Enter key handlers
+  document.getElementById('keyInput').addEventListener('keydown', e => { if (e.key === 'Enter') checkKey(); });
+  document.getElementById('emailInput').addEventListener('keydown', e => { if (e.key === 'Enter') submitEmail(); });
+
+  // Auto-restore key from localStorage
+  (function() {
+    const used = getUsedKeys();
+    for (const key of used) {
+      if (VALID_KEYS.includes(key)) {
+        document.getElementById('keyInput').value = key;
+        checkKey();
+        break;
+      }
+    }
+  })();
+</script>
+</body>
+</html>

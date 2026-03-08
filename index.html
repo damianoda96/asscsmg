@@ -1186,17 +1186,35 @@
     }
   }
 
-  function submitEmail() {
+  async function submitEmail() {
     const email = document.getElementById('emailInput').value.trim();
     const msg = document.getElementById('emailMsg');
+
     if (!email || !email.includes('@')) {
       msg.textContent = '!! That does not look like an email address. Try harder. !!';
       msg.style.color = 'var(--maroon)';
       return;
     }
-    msg.textContent = "✓ You're on the list. We'll be in touch. Don't hold your breath though.";
-    msg.style.color = 'green';
-    document.getElementById('emailInput').value = '';
+
+    msg.textContent = '> Signing you up...';
+    msg.style.color = 'var(--aqua)';
+
+    try {
+      const res = await fetch(`${SB_URL}/rest/v1/email_signups`, {
+        method: 'POST',
+        headers: { ...sbHeaders(), 'Prefer': 'return=minimal' },
+        body: JSON.stringify({ email, created_at: new Date().toISOString() }),
+      });
+
+      if (!res.ok) throw new Error('Failed');
+
+      msg.textContent = "✓ You're on the list. We'll be in touch. Don't hold your breath though.";
+      msg.style.color = 'green';
+      document.getElementById('emailInput').value = '';
+    } catch {
+      msg.textContent = '!! Something went wrong. Try again. !!';
+      msg.style.color = 'var(--maroon)';
+    }
   }
 
   // ═══════════════════════════════════════════════
@@ -1311,7 +1329,7 @@
       body,
       tag: selectedTag,
       votes: 0,
-      created_at: Date.now(),
+      created_at: new Date().toISOString(),
       key_hint: currentUserKey.slice(0, 4) + '-****-****',
     };
 

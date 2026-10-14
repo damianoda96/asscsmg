@@ -888,11 +888,17 @@
         </div>
       </div>
       <div class="win-body">
-        <div class="retro-h2">GOT A KEY? ENTER IT!!</div>
+        <div class="retro-h2">THE DEMO MOVED TO THE VAULT!!</div>
         <p style="color:var(--silver);font-size:1.1rem;margin-bottom:0.5rem;">
-          &gt; Demo keys are handed out to playtesters like scarce rations.<br/>
-          &gt; If you don't have one, join the mailing list below and beg politely.<br/>
-          &gt; Format: XXXX-XXXX-XXXX
+          &gt; Brew Master downloads now live in the Super Secret Game Vault, along with every other game we're cooking.<br/>
+          &gt; Playtesters: use the personal vault key we sent you.<br/>
+          &gt; No key? Join the mailing list below and beg politely.
+        </p>
+        <div class="dl-links" style="margin:0.75rem 0 1.25rem;">
+          <a class="dl-btn" href="https://gamehub.damiano-da96.workers.dev">🔑 ENTER THE VAULT &gt;&gt;</a>
+        </div>
+        <p style="color:var(--silver);font-size:1.1rem;margin-bottom:0.5rem;">
+          &gt; Got an old demo key? It still unlocks the forum below. Format: XXXX-XXXX-XXXX
         </p>
         <div class="key-row">
           <input class="key-field" id="keyInput" type="text" placeholder="XXXX-XXXX-XXXX" maxlength="19" autocomplete="off"/>
@@ -902,15 +908,13 @@
 
         <!-- Download panel (hidden until valid key) -->
         <div class="download-panel" id="downloadPanel">
-          <div class="dl-title">ACCESS GRANTED — CHOOSE YOUR POISON:</div>
+          <div class="dl-title">ACCESS GRANTED — FORUM UNLOCKED. DOWNLOADS ARE IN THE VAULT:</div>
           <div class="dl-links">
-            <a class="dl-btn" id="dlWindows" href="#" target="_blank">💾 WINDOWS (.zip)</a>
-            <a class="dl-btn" id="dlMac" href="#" target="_blank">🍎 macOS (.zip)</a>
-            <a class="dl-btn" id="dlLinux" href="#" target="_blank">🐧 LINUX (.zip)</a>
+            <a class="dl-btn" href="https://gamehub.damiano-da96.workers.dev">🔑 ENTER THE VAULT &gt;&gt;</a>
           </div>
           <div class="dl-note">
             &gt; Unzip it. Run the executable. Don't ask why there's a basement.<br/>
-            &gt; Report bugs to the mailing list. Or don't. We'll find them eventually.
+            &gt; Report bugs with the feedback form in the vault. Or don't. We'll find them eventually.
           </div>
         </div>
       </div>
@@ -1122,12 +1126,6 @@
     'TEST-CAFE-1234',
   ];
 
-  const DOWNLOAD_URLS = {
-    windows: '#',
-    mac: '#',
-    linux: '#',
-  };
-
   // ═══════════════════════════════════════════════
 
   let currentUserKey = null;
@@ -1167,9 +1165,6 @@
       currentUserKey = key;
 
       panel.classList.add('visible');
-      document.getElementById('dlWindows').href = DOWNLOAD_URLS.windows;
-      document.getElementById('dlMac').href = DOWNLOAD_URLS.mac;
-      document.getElementById('dlLinux').href = DOWNLOAD_URLS.linux;
 
       // Unlock forum
       document.getElementById('forumLocked').style.display = 'none';
